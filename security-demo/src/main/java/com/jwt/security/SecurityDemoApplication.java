@@ -28,12 +28,12 @@ public class SecurityDemoApplication {
 				new User(1,"shiv1",bCryptPasswordEncoder.encode("pass1"),"ROLE_ADMIN","shiv1@gmail.com"),
 				new User(2,"shiv2",bCryptPasswordEncoder.encode("pass2"),"ROLE_SUPER_ADMIN","shiv2@gmail.com"),
 				new User(3,"shiv3",bCryptPasswordEncoder.encode("pass3"),"ROLE_USER","shiv3@gmail.com"),
-				new User(2,"shiv4",bCryptPasswordEncoder.encode("pass4"),"ROLE_SUPER_ADMIN","shiv4@gmail.com"),
-				new User(3,"shiv5",bCryptPasswordEncoder.encode("pass5"),"ROLE_USER","shiv5@gmail.com"),
-				new User(2,"shiv6",bCryptPasswordEncoder.encode("pass6"),"ROLE_SUPER_ADMIN","shiv6@gmail.com"),
-				new User(3,"shiv7",bCryptPasswordEncoder.encode("pass7"),"ROLE_USER","shiv7@gmail.com"),
-				new User(2,"shiv8",bCryptPasswordEncoder.encode("pass8"),"ROLE_SUPER_ADMIN","shiv8@gmail.com"),
-				new User(3,"shiv9",bCryptPasswordEncoder.encode("pass9"),"ROLE_USER","shiv9@gmail.com")
+				new User(4,"shiv4",bCryptPasswordEncoder.encode("pass4"),"ROLE_SUPER_ADMIN","shiv4@gmail.com"),
+				new User(5,"shiv5",bCryptPasswordEncoder.encode("pass5"),"ROLE_USER","shiv5@gmail.com"),
+				new User(6,"shiv6",bCryptPasswordEncoder.encode("pass6"),"ROLE_SUPER_ADMIN","shiv6@gmail.com"),
+				new User(7,"shiv7",bCryptPasswordEncoder.encode("pass7"),"ROLE_USER","shiv7@gmail.com"),
+				new User(8,"shiv8",bCryptPasswordEncoder.encode("pass8"),"ROLE_SUPER_ADMIN","shiv8@gmail.com"),
+				new User(9,"shiv9",bCryptPasswordEncoder.encode("pass9"),"ROLE_USER","shiv9@gmail.com")
 		).collect(Collectors.toList());
 		userRepository.saveAll(users);
 	}

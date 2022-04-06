@@ -3,6 +3,7 @@ package com.jwt.security.controller;
 import com.jwt.security.model.AuthRequest;
 import com.jwt.security.model.AuthResponse;
 import com.jwt.security.util.JwtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/authentication")
+@Slf4j
 public class AuthenticationController {
 
     @Autowired
@@ -25,11 +27,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<?> generateToken(@RequestBody AuthRequest authRequest){
-        try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(),authRequest.getPassword()));
-        }catch(Exception exception){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid username or password");
-        }
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(),authRequest.getPassword()));
         return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(jwtUtil.generateToken(authRequest.getUsername())));
     }
 }
