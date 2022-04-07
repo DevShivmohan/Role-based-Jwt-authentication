@@ -1,7 +1,9 @@
 package com.jwt.security.controller;
 
+import com.jwt.security.entity.User;
 import com.jwt.security.model.AuthRequest;
 import com.jwt.security.model.AuthResponse;
+import com.jwt.security.repository.UserRepository;
 import com.jwt.security.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private JwtUtil jwtUtil;
 
     @Autowired
@@ -28,6 +33,7 @@ public class AuthenticationController {
     @PostMapping("/authenticate")
     public ResponseEntity<?> generateToken(@RequestBody AuthRequest authRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(),authRequest.getPassword()));
-        return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(jwtUtil.generateToken(authRequest.getUsername())));
+        User user=userRepository.findByUsername(authRequest.getUsername());
+        return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(jwtUtil.generateToken(authRequest.getUsername()), user.getRole()));
     }
 }

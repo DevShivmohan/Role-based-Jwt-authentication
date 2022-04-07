@@ -22,7 +22,6 @@ public class SecurityDemoApplication {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@PostConstruct
 	public void init(){
 		List<User> users= Stream.of(
 				new User(1,"shiv1",bCryptPasswordEncoder.encode("pass1"),"ROLE_ADMIN","shiv1@gmail.com"),
